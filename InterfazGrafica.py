@@ -12,7 +12,7 @@ main.geometry("720x480")
 
 def Camara():
     placa = []
-    # captura = cv2.VideoCapture(0)
+    #captura = cv2.VideoCapture(0)
     captura = cv2.VideoCapture("rtsp://admin:Robotec.123@192.168.1.127:554/sub")
     leido, imageIP = captura.read()
 
@@ -70,6 +70,8 @@ frame1 = Frame(main, bg="white")
 frame1.pack(expand=True, fill='both')
 Boton1 = Button(frame1, text="Recognize LPR", command=Camara)
 Boton1.place(relx=.35, rely=.05, relwidth=.25, relheight=.1)
+#Spinbox = Spinbox(frame1, values =("reprobado", "ochenta", "noventa", "cien")).place(x=100, y=100)
+vertical = Scale(frame1, from_=0, to=200).place(x=100, y= 100)
 #BotonSa = Button(frame1, text="Salir", command=)
 #BotonSa.place(relx=.35, rely=.60, relwidth=.25, relheight=.1)
 main.mainloop()
