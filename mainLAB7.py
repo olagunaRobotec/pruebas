@@ -43,7 +43,7 @@ if leido == True:
     #Amax = int(input("Digite valor Amax "))
     #Bmax = int(input("Digite valor Bmax "))
     imgq = cv2.inRange(lab, (150, 90, 0), (Lmax, Amax, Bmax), lab)
-    cv2.imshow("RangeLab", imgq)
+    #cv2.imshow("RangeLab", imgq)
 
     cn, _ = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 

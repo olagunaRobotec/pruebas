@@ -16,12 +16,14 @@ def dibujar(event, x, y, flags, param):
         recorte = imageIP[yI:yF, xI:xF, :]
         cv2.imwrite(path + file1, recorte)
         cv2.imshow("RecorteIP", recorte)
+        cv2.moveWindow("RecorteIP", 720, 60)
+
 
 path = "C:\FotoLPR/"
-#file = "4.jpg"
+# file = "4.jpg"
 file1 = "Recorte.jpg"
 
-captura = cv2.VideoCapture("rtsp://admin:Robotec.123@192.168.1.127:554/sub")
+captura = cv2.VideoCapture("rtsp://admin:Robotec.123@192.168.1.129:554/sub")
 ret, imageIP = captura.read()
 
 new_weight = 640;
@@ -38,6 +40,7 @@ while True:
         cv2.rectangle(imageIP, (xI, yI), (xF, yF), (0, 255, 0), 3)
 
     cv2.imshow('display', imageIP)
+    cv2.moveWindow("display", 10, 60)
 
     k = cv2.waitKey(1) & 0xff
     q_1 = cv2.waitKey(1) & 0xff

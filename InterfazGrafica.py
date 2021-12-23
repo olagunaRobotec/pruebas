@@ -13,7 +13,7 @@ main.geometry("720x480")
 def Camara():
     placa = []
     #captura = cv2.VideoCapture(0)
-    captura = cv2.VideoCapture("rtsp://admin:Robotec.123@192.168.1.127:554/sub")
+    captura = cv2.VideoCapture("rtsp://admin:Robotec.123@192.168.1.129:554/sub")
     leido, imageIP = captura.read()
 
     if leido == True:

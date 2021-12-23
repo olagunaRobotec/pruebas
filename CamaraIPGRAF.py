@@ -30,7 +30,7 @@ def callback():
 
 def conectar():
     global obj, mens
-    host = '192.168.1.127'
+    host = '192.168.1.129'
     port = 554
     # Se importa el módulo
     import socket
@@ -56,7 +56,7 @@ def cerrar():
     obj.close()
 
 
-url = "rtsp://admin:Robotec.123@192.168.1.127:554/sub"
+url = "rtsp://admin:Robotec.123@192.168.1.129:554/sub"
 cap = cv2.VideoCapture(url)
 
 if cap.isOpened():

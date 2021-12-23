@@ -28,41 +28,40 @@ if leido == True:
     gray = cv2.cvtColor(image_test, cv2.COLOR_BGR2GRAY)
     gray = cv2.blur(gray, (3, 3))
     #gauss = cv2.GaussianBlur(gray, (5, 5), 0)
-    canny = cv2.Canny(gray, 160, 160)
+    canny = cv2.Canny(gray, 350, 350)
     canny = cv2.dilate(canny, None, iterations=1)
 
-    cn, _ = cv2.findContours(canny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    cn, _ = cv2.findContours(canny, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
     for c in cn:
         cv2.drawContours(image_test, [c], 0, (0, 255, 0), 2)
-        cv2.imshow("image", image_test)
         area = cv2.contourArea(c)
         x, y, w, h = cv2.boundingRect(c)
-        epsilon = 0.01 * cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, epsilon, True)
+        #epsilon = 0.01 * cv2.arcLength(c, True)
+        #approx = cv2.approxPolyDP(c, epsilon, True)
 
-        if len(approx) == 4 and area > 1000 and area < 8000:
-            print('area= ', area)
-            print('w= ', w)
-            print('h= ', h)
-            aspect_ratio = float(w) / h
-            print('AS= ', aspect_ratio)
+        if area > 9000:
+            #print('area= ', area)
+            #print('w= ', w)
+            #print('h= ', h)
+            #aspect_ratio = float(w) / h
+            #print('AS= ', aspect_ratio)
 
-            if aspect_ratio > 1.5:
-                cv2.drawContours(image_test, [c], 0, (0, 255, 0), 3)
-                placa = gray[y:y + h, x:x + w]
-                cv2.imshow('Placa', placa)
-                imgP = cv2.imwrite("C:\FotoLPR\Placa.jpg", placa)
-                if imgP != 0:
-                    print("Archivo enviado al lugar")
-                else:
-                    print("no se capturado nada")
-                text = pytesseract.image_to_string(placa, config='--psm 11')
-                print('text', text)
-#cv2.imshow('ImageLPR', image_test)
+            #if aspect_ratio > 1.5:
+            cv2.drawContours(image_test, [c], 0, (0, 255, 0), 3)
+                #placa = gray[y:y + h, x:x + w]
+                #cv2.imshow('Placa', placa)
+                #imgP = cv2.imwrite("C:\FotoLPR\Placa.jpg", placa)
+                #if imgP != 0:
+                #    print("Archivo enviado al lugar")
+                #else:
+                #    print("no se capturado nada")
+                #text = pytesseract.image_to_string(placa, config='--psm 11')
+                #print('text', text)
+cv2.imshow('ImageLPR', image_test)
 #cv2.imshow('Canny', canny)
 #cv2.imshow('ImageIP', imageIP)
-#cv2.moveWindow("ImageLPR", 700, 60)
-#cv2.moveWindow("ImageIP", 10, 60)
+cv2.moveWindow("ImageLPR", 700, 60)
+#cv2.moveWindow("Canny", 10, 60)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
